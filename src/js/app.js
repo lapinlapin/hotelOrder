@@ -17,7 +17,7 @@ var hotelApp = angular.module('hotel', ['ui.router']);
 					url: '/order',
 					views: {
 						'order': {
-							templateUrl: '../order/order.html',
+							templateUrl: '../order.html',
 							controller: 'order',
 							controllerAs: 'ctrl'
 						}
