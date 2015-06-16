@@ -1,5 +1,18 @@
 {
-	"name": "hotel-order",
-	"version": "0.0.1",
-	"author": "P. Lapin"
+  "name": "hotel-order",
+  "version": "0.0.1",
+  "author": "P. Lapin",
+  "devDependencies": {
+    "connect": "^3.3.5",
+	"serve-static": "1.9.3",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-csso": "^1.0.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jade": "^1.0.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-myth": "^1.0.3",
+    "gulp-stylus": "^2.0.4",
+    "gulp-uglify": "^1.2.0"
+  }
 }
