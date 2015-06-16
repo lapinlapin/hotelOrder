@@ -1,8 +1,9 @@
-html
+html(ng-app='hotel')
 	head
-		title Заказ номеров
+		title
 		link(rel="stylesheet" href="css/index.css")
-
 	body
-		div.order Заказ номера
-		script(src="js/index.js")
+		div(ui-view='order')
+		script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
+		script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.0/angular-ui-router.min.js")
+		script(type="text/javascript" src="js/index.js")
