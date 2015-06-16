@@ -10,22 +10,24 @@ var tinyLr = require('tiny-lr'),
 	concat = require('gulp-concat'),
 	connect = require('connect'),
 	serveStatic = require('serve-static'),
+	nib = require('nib');
 	server = tinyLr();
-
-gulp.task('stylus', function() {
-	gulp.src('./src/stylus/screen.styl')
-		.pipe(stylus({use: ['nib']}))
-		.on('error', console.log)
-		.pipe(myth())
-		.pipe(gulp.dest('./public/css/'))
-		.pipe(livereload(server));
-});
 
 gulp.task('jade', function() {
 	gulp.src('./src/tmpl/**/*.jade')
 		.pipe(jade({pretty: true}))
 		.on('error', console.log)
 		.pipe(gulp.dest('./public/'))
+		.pipe(livereload(server));
+});
+
+gulp.task('stylus', function() {
+	gulp.src('./src/stylus/**/*.styl')
+		.pipe(stylus({use: nib(), compress: true}))
+		.on('error', console.log)
+		.pipe(myth())
+		.pipe(concat('index.css'))
+		.pipe(gulp.dest('./public/css/'))
 		.pipe(livereload(server));
 });
 
