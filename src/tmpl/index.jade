@@ -3,8 +3,12 @@ html(data-ng-app='hotel')
 		title
 		link(rel="stylesheet" href="css/index.css")
 	body
+		.header
+			.header__logo
+				img(data-ng-src='../img/menu-logo.png')
+
+
 		div(data-ui-view='order')
 		script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
 		script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.0/angular-ui-router.min.js")
 		script(type="text/javascript" src="js/index.js")
-			
