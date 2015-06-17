@@ -1,4 +1,4 @@
 hotelApp
-	.controller('order', function() {
+	.controller('order', function($paramsSetter) {
 		var self = this;
 	});
