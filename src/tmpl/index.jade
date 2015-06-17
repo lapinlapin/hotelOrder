@@ -3,23 +3,7 @@ html(data-ng-app='hotel')
 		title
 		link(rel="stylesheet" href="css/index.css")
 	body
-		.header
-			.header__logo
-				img(data-ng-src='../img/menu-logo.png')
-				.header__title Уютный отель
-			ul.header__menu
-				li.header__menu-item
-					img.header__menu-label(data-ng-src='img/label-menu.png')
-					a(href='#') Номера
-				li.header__menu-item.header__menu-item_pressed
-					img.header__menu-label(data-ng-src='img/label-menu.png')
-					a(href='#') Заказ
-				li.header__menu-item
-					img.header__menu-label(data-ng-src='img/label-menu.png')
-					a(href='#') Об отеле
-
-
-
+		div(data-header)
 		div(data-ui-view='order')
 		script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
 		script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.0/angular-ui-router.min.js")

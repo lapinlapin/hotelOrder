@@ -22,6 +22,9 @@ var hotelApp = angular.module('hotel', ['ui.router']);
 							controllerAs: 'ctrl'
 						}
 					}
+				})
+				.state('main', {
+					url: '/main'
 				});
 
 		}]);

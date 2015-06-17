@@ -1,0 +1,8 @@
+.header
+	.header__logo
+		img(data-ng-src='{{menu.logo}}')
+		.header__title {{menu.title}}
+	ul.header__menu
+		li.header__menu-item(data-ng-repeat='item in menu.items' data-ng-class='{"header__menu-item_pressed": item.active}')
+			img.header__menu-label(data-ng-src='{{item.labelSrc}}')
+			a(data-ui-sref='order') {{item.title}}
