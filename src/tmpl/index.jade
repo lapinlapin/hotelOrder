@@ -6,6 +6,18 @@ html(data-ng-app='hotel')
 		.header
 			.header__logo
 				img(data-ng-src='../img/menu-logo.png')
+				.header__title Уютный отель
+			ul.header__menu
+				li.header__menu-item
+					img.header__menu-label(data-ng-src='img/label-menu.png')
+					a(href='#') Номера
+				li.header__menu-item.header__menu-item_pressed
+					img.header__menu-label(data-ng-src='img/label-menu.png')
+					a(href='#') Заказ
+				li.header__menu-item
+					img.header__menu-label(data-ng-src='img/label-menu.png')
+					a(href='#') Об отеле
+
 
 
 		div(data-ui-view='order')
