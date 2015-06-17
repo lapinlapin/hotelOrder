@@ -1,0 +1,31 @@
+.people
+	.people__title Проживающие
+	.people__item
+		span.people__label Фамилия
+		input.people__area(data-ng-model='family' placeholder='Фамилия')
+	.people__item
+		span.people__label Имя
+		input.people__area(data-ng-model='first' placeholder='Имя')
+	.people__item
+		span.people__label Отчество
+		input.people__area(data-ng-model='second' placeholder='Отчество')
+	.people__item
+		span.people__label Возраст
+		input.people__area(data-ng-model='age' placeholder='Возраст')
+	.people__added(data-ng-click='addPeople({fam: family, first: first, second: second, age: age})') Добавить
+
+	table.people__array(data-ng-show='people.length != 0')
+		thead
+			th Фамилия
+			th Имя
+			th Отчество
+			th Возраст
+			th
+		tbody
+			tr(data-ng-repeat='item in people')
+				td {{item.fam}}
+				td {{item.first}}
+				td {{item.second}}
+				td {{item.age}}
+				td(data-ng-click='removePeople(item.id)')
+					img.people__array-remove(data-ng-src='../img/delete.png')
