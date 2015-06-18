@@ -16,6 +16,7 @@ hotelApp
 					scope.people.push(data);
 
 					clearFields();
+					$paramsSetter.setParam('people', scope.getAndSetPeopleParams());
 				};
 
 				scope.removePeople = function(id) {
@@ -31,6 +32,16 @@ hotelApp
 
 					scope.people = people;
 					return scope.people;
+				}
+
+				scope.getAndSetPeopleParams = function() {
+					var dataStr = '';
+
+					scope.people.forEach(function(people) {
+						dataStr += 'persons[] = "["' + people.fam + '", "' + people.first + '", "' + people.second + '", "' + people.age + '"]" ';
+					});
+					console.log(dataStr);
+					return dataStr;
 				}
 
 				function clearFields() {
