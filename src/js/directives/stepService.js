@@ -67,11 +67,25 @@ hotelApp
 					newV == true ? scope.modelsServices.tv = true : scope.modelsServices.tv = false;
 				});
 
+				scope.getAndSetServicesParams = function() {
+					var data = [],
+						strParam;
+
+					for (var key in scope.modelsServices) {
+						scope.modelsServices[key] == true ? data.push('1') : data.push('0');
+					};
+
+					strParam = 'options[] = "[' + data.join(',') + ']"';
+					console.log(strParam);
+					return strParam;
+				};
+
 				$timeout(function() {
 					$('.stepService__item').on('click', function(e) {
 						scope.serviceCost = $(this).attr('data-cost');
 						scope.servicePeople = $(this).attr('data-people');
 						console.log(scope.serviceCost, 'people: '+scope.servicePeople);
+						scope.getAndSetServicesParams();
 					});
 				}, 1500);
 			},
