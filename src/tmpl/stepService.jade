@@ -1,6 +1,5 @@
 .stepService
 	.stepService__title Опции
-	.stepService__item(data-ng-repeat='service in services')
-		input.stepService__check(type='checkbox' id='{{service.model}}' data-ng-model='service.model')
+	.stepService__item(data-ng-repeat='service in services' data-people='{{service.people}}' data-cost='{{service.cost}}')
+		input.stepService__check(type='checkbox' id='{{service.model}}' data-ng-model='modelsServices[service.model]')
 		label.stepService__label(for='{{service.model}}') {{service.title}}
-	
