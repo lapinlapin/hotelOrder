@@ -1,6 +1,6 @@
 .breadCrumbs
 	.breadCrubms__item(data-ng-repeat='item in breadCrumbs | limitTo:currentPosition') {{item.title}}
 	.breadCrumbs__buttons
-		a.breadCrumbs__prev Назад
-		a.breadCrumbs__next Далее
+		a.breadCrumbs__prev(data-ng-show='currentPosition >= 2' data-ng-click='goPrevStep()') Назад
+		a.breadCrumbs__next(data-ng-show='currentPosition >= 2' data-ng-click='goNextPrev()') Далее
 

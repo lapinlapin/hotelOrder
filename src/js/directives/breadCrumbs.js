@@ -1,5 +1,5 @@
 hotelApp
-	.directive('breadCrumbs',[function() {
+	.directive('breadCrumbs', ['$stepError', function($stepError) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -23,6 +23,18 @@ hotelApp
 						title: 'Шаг 5'
 					}
 				];
+
+				scope.goPrevStep = function() {
+					scope.currentPosition--;
+					//после возврата на шаг назад, ставим флаг о том, что ошибка (данные еще не заполены)
+					$stepError.setErrorValue(true);
+				};
+
+				scope.goNextPrev = function() {
+					if ($stepError.getErrorValue()) return;
+					scope.currentPosition++;
+					$stepError.setErrorValue(true);
+				};
 			},
 			templateUrl: '../breadCrumbs.html',
 			replace: true

@@ -1,5 +1,5 @@
 hotelApp
-	.directive('stepPeople', ['$paramsSetter', '$timeout', function($paramsSetter, $timeout) {
+	.directive('stepPeople', ['$paramsSetter', '$timeout', '$stepError', function($paramsSetter, $timeout, $stepError) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -11,6 +11,15 @@ hotelApp
 				scope.addCounter = 0;
 				scope.validateError = 0;
 
+				scope.$watch('people', function(newV) {
+					if (newV.length > 0) {
+						$stepError.setErrorValue(false)
+					} else {
+						$stepError.setErrorValue(true);
+						console.log(newV);
+					}
+				}, true);
+
 				scope.addPeople = function(data) {
 					validate();
 					if (scope.validateError > 0) return;
@@ -20,13 +29,15 @@ hotelApp
 
 					clearFields();
 					$paramsSetter.setParam('people', scope.getAndSetPeopleParams());
-					scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
+					$stepError.setErrorValue(false);
+					//scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 				};
 
 				scope.removePeople = function(id) {
 					var people = [],
 						ndx = 0;
 
+					scope.people.length > 0 ? $stepError.setErrorValue(false) : $stepError.setErrorValue(true);
 					scope.people.forEach(function(data) {
 						if (data.id != id) {
 							data.id = ndx++;
@@ -36,7 +47,7 @@ hotelApp
 
 					scope.people = people;
 					return scope.people;
-				}
+				};
 
 				scope.getAndSetPeopleParams = function() {
 					var dataStr = '';
@@ -46,7 +57,7 @@ hotelApp
 					});
 					console.log(dataStr);
 					return dataStr;
-				}
+				};
 
 				function clearFields() {
 					['family', 'first', 'second', 'age'].forEach(function(field) {
@@ -100,7 +111,7 @@ hotelApp
 						scope.validateError = 0;
 
 						if (!conf.checker(conf.model)) {
-							scope.validateError++
+							scope.validateError++;
 							$(query).attr('value', conf.title).addClass(conf.applyCls);
 						} else {
 							$(query).removeClass(conf.applyCls);

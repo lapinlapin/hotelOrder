@@ -1,5 +1,5 @@
 hotelApp
-	.directive('stepRooms', ['$paramsSetter', '$timeout', function($paramsSetter, $timeout) {
+	.directive('stepRooms', ['$paramsSetter', '$timeout', '$stepError', function($paramsSetter, $timeout, $stepError) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -45,7 +45,9 @@ hotelApp
 
 						$(this).addClass('stepRooms__rooms-room_select');
 						$paramsSetter.setParam('rooms', scope.roomId);
+						clearSelected();
 						scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
+						$stepError.setErrorValue(true);
 					});
 				}, 1500);
 			},
