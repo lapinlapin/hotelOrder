@@ -9,6 +9,7 @@ hotelApp
 			link: function(scope, elem, attrs) {
 				setInterval(function() {
 					scope.preview = $price.getPrice();
+					$price.calculate();
 				}, 10000);
 			},
 			templateUrl: '../stepPreview.html',

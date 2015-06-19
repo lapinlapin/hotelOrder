@@ -30,7 +30,9 @@ hotelApp
 
 					clearFields();
 					$paramsSetter.setParam('people', scope.getAndSetPeopleParams());
+
 					$price.setPrice('people', scope.people);
+					$price.setPrice('peopleCount', scope.people.length);
 					$stepError.setErrorValue(false);
 					//scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 				};
