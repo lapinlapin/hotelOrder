@@ -2,7 +2,10 @@ hotelApp
 	.directive('stepPeople', ['$paramsSetter', '$timeout', function($paramsSetter, $timeout) {
 		return {
 			restrict: 'A',
-			scope: {},
+			scope: {
+				currentStep: '=',
+				blockStep: '@'
+			},
 			link: function(scope, elem, attrs) {
 				scope.people = [];
 				scope.addCounter = 0;
@@ -17,6 +20,7 @@ hotelApp
 
 					clearFields();
 					$paramsSetter.setParam('people', scope.getAndSetPeopleParams());
+					scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 				};
 
 				scope.removePeople = function(id) {

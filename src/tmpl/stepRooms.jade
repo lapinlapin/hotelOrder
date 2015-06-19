@@ -1,4 +1,4 @@
-.stepRooms
+.stepRooms(data-ng-show='currentStep == blockStep')
 	.stepRooms__title Тип номера
 	.stepRooms__rooms
 		.stepRooms__rooms-room(data-ng-repeat='room in rooms' data-id='{{room.id}}' data-cost='{{room.cost}}')

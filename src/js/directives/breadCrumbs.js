@@ -1,5 +1,5 @@
 hotelApp
-	.directive('breadCrumbs', function() {
+	.directive('breadCrumbs',[function() {
 		return {
 			restrict: 'A',
 			scope: {
@@ -22,9 +22,9 @@ hotelApp
 					{
 						title: 'Шаг 5'
 					}
-				]
+				];
 			},
 			templateUrl: '../breadCrumbs.html',
 			replace: true
 		}
-	});
+	}]);

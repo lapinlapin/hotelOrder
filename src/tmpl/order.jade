@@ -1,5 +1,5 @@
-div(data-bread-crumbs data-current-position='5')
+div(data-bread-crumbs data-current-position='currentStep')
 .contentTabs
-	div(data-step-service)
-	div(data-step-rooms)
-	div(data-step-people)
+	div(data-step-rooms  data-block-step='1' data-current-step='currentStep')
+	div(data-step-people data-block-step='2' data-current-step='currentStep')
+	div(data-step-service data-block-step='3' data-current-step='currentStep')
