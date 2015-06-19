@@ -2,7 +2,10 @@ hotelApp
 	.directive('stepService', ['$paramsSetter', '$timeout', function($paramsSetter, $timeout) {
 		return {
 			restrict: 'A',
-			scope: {},
+			scope: {
+				currentStep: '=',
+				blockStep: '@'
+			},
 			link: function(scope, elem, attrs) {
 				scope.modelsServices = {
 					eat: 'eat',
@@ -85,7 +88,7 @@ hotelApp
 						scope.serviceCost = $(this).attr('data-cost');
 						scope.servicePeople = $(this).attr('data-people');
 						console.log(scope.serviceCost, 'people: '+scope.servicePeople);
-						scope.getAndSetServicesParams();
+						$paramsSetter.setParam('options', scope.getAndSetServicesParams());
 					});
 				}, 1500);
 			},

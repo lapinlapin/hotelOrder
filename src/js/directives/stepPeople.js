@@ -1,5 +1,5 @@
 hotelApp
-	.directive('stepPeople', ['$paramsSetter', '$timeout', '$stepError', function($paramsSetter, $timeout, $stepError) {
+	.directive('stepPeople', ['$paramsSetter', '$timeout', '$stepError', '$rootScope', function($paramsSetter, $timeout, $stepError, $rootScope) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -11,16 +11,11 @@ hotelApp
 				scope.addCounter = 0;
 				scope.validateError = 0;
 
-				scope.$watch('people', function(newV) {
-					if (newV.length > 0) {
-						$stepError.setErrorValue(false)
-					} else {
-						$stepError.setErrorValue(true);
-						console.log(newV);
-					}
-				}, true);
-
 				scope.addPeople = function(data) {
+					var maxPeople = $paramsSetter.getParams().rooms;
+
+					if (scope.people.length == maxPeople) return;
+
 					validate();
 					if (scope.validateError > 0) return;
 
@@ -58,6 +53,10 @@ hotelApp
 					console.log(dataStr);
 					return dataStr;
 				};
+
+				$rootScope.$on('cleanedPeople', function(e, data) {
+					scope.people = [];
+				});
 
 				function clearFields() {
 					['family', 'first', 'second', 'age'].forEach(function(field) {

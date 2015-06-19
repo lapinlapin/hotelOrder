@@ -1,4 +1,4 @@
-.stepService
+.stepService(data-ng-show='currentStep == blockStep')
 	.stepService__title Опции
 	.stepService__item(data-ng-repeat='service in services' data-people='{{service.people}}' data-cost='{{service.cost}}')
 		input.stepService__check(type='checkbox' id='{{service.model}}' data-ng-model='modelsServices[service.model]')

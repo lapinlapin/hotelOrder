@@ -47,7 +47,7 @@ hotelApp
 						$paramsSetter.setParam('rooms', scope.roomId);
 						clearSelected();
 						scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
-						$stepError.setErrorValue(true);
+						$stepError.setErrorValue(false);//!!!! поставить на тру
 					});
 				}, 1500);
 			},
