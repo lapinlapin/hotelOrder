@@ -49,6 +49,11 @@ hotelApp
 
 				scope.goNextPrev = function() {
 					console.log($paramsSetter.getParams()); // параметры на текущий момент
+
+					if (scope.currentPosition == 4) { //если на текущий момент, перед счетчиком мы в услугах, разрешаем не выбирать
+						$stepError.setErrorValue(false);
+					}
+
 					if ($stepError.getErrorValue()) return; // если валидация там где нужно не пройдена, останавливаем
 
 					scope.currentPosition++; // увеличиваем текущий шаг
@@ -58,7 +63,9 @@ hotelApp
 					}
 
 					$stepError.setErrorValue(true);
+
 					$rootScope.$emit('cleanedPeople', true);
+					$rootScope.$emit('cleanedServices', true);
 				};
 			},
 			templateUrl: '../breadCrumbs.html',

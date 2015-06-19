@@ -1,5 +1,11 @@
 hotelApp
-	.directive('stepPeople', ['$paramsSetter', '$timeout', '$stepError', '$rootScope', function($paramsSetter, $timeout, $stepError, $rootScope) {
+	.directive('stepPeople', [
+		'$paramsSetter',
+		'$timeout',
+		'$stepError',
+		'$rootScope',
+		'$price',
+		function($paramsSetter, $timeout, $stepError, $rootScope, $price) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -24,6 +30,7 @@ hotelApp
 
 					clearFields();
 					$paramsSetter.setParam('people', scope.getAndSetPeopleParams());
+					$price.setPrice('people', scope.people);
 					$stepError.setErrorValue(false);
 					//scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 				};

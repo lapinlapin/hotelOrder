@@ -1,5 +1,5 @@
 hotelApp
-	.directive('stepPreview', [function() {
+	.directive('stepPreview', ['$price', function($price) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -7,7 +7,9 @@ hotelApp
 				blockStep: '@'
 			},
 			link: function(scope, elem, attrs) {
-
+				setInterval(function() {
+					scope.preview = $price.getPrice();
+				}, 10000);
 			},
 			templateUrl: '../stepPreview.html',
 			replace: true

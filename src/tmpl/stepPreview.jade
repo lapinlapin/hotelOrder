@@ -1,2 +1,11 @@
 .stepPreview(data-ng-show='currentStep == blockStep')
-	div() preview area
+	.stepPreview__rooms
+		span Стоимость {{preview.room.cost}}
+		img(data-ng-src='{{preview.room.image}}' width='300' height='300')
+	ul.stepPreview__people
+		span Посетители
+		li.stepPreview__people-item(data-ng-repeat='people in preview.people') {{people.fam}} {{people.first}} {{people.second}} {{people.age}}
+
+	ul.stepPreview__services
+		span Услуги к номеру
+		li.stepPreview__services-item(data-ng-repeat='service in preview.services') {{service.title}} {{service.cost}}

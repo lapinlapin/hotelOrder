@@ -1,5 +1,10 @@
 hotelApp
-	.directive('stepRooms', ['$paramsSetter', '$timeout', '$stepError', function($paramsSetter, $timeout, $stepError) {
+	.directive('stepRooms', [
+		'$paramsSetter',
+		'$timeout',
+		'$stepError',
+		'$price',
+		function($paramsSetter, $timeout, $stepError, $price) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -38,13 +43,19 @@ hotelApp
 					$('.stepRooms__rooms-room').on('click', function(e) {
 						scope.roomId = $(this).attr('data-id');
 						scope.roomCost = $(this).attr('data-cost');
+						scope.image = $(this).find('img').attr('data-ng-src');
 
-						console.log('select: cost ' + scope.roomCost + ', id ' + scope.roomId);
+						console.log('select: cost ' + scope.roomCost + ', id ' + scope.roomId + 'src '+scope.image);
 
 						clearSelected();
 
 						$(this).addClass('stepRooms__rooms-room_select');
+
 						$paramsSetter.setParam('rooms', scope.roomId);
+						$price.setPrice('room', {
+							cost: scope.roomCost,
+							image: scope.image
+						});
 						clearSelected();
 						scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 						$stepError.setErrorValue(false);//!!!! поставить на тру

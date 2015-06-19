@@ -1,5 +1,11 @@
 hotelApp
-	.directive('stepService', ['$paramsSetter', '$timeout', function($paramsSetter, $timeout) {
+	.directive('stepService', [
+		'$paramsSetter',
+		'$timeout',
+		'$stepError',
+		'$price',
+		'$rootScope',
+		function($paramsSetter, $timeout, $stepError, $price, $rootScope) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -62,6 +68,16 @@ hotelApp
 					}
 				];
 
+				function clearServiceModels() {
+					Object.keys(scope.modelsServices).forEach(function(model) {
+						scope.modelsServices[model] = false;
+					});
+				}
+
+				$rootScope.$on('cleanedServices', function(e, data) {
+					clearServiceModels();
+				});
+
 				scope.$watch('modelsServices.play', function(newV) {
 					newV  == true ? scope.modelsServices.tv = true : scope.modelsServices.tv = false;
 				});
@@ -74,11 +90,24 @@ hotelApp
 					var data = [],
 						strParam;
 
+					scope.applyServices = [];
+
 					for (var key in scope.modelsServices) {
-						scope.modelsServices[key] == true ? data.push('1') : data.push('0');
+						if (scope.modelsServices[key] == true) {
+							data.push('1');
+
+							scope.services.forEach(function(serv) {
+								if (serv.model == key) {
+									scope.applyServices.push(serv);
+								}
+							});
+
+						} else {
+							data.push('0');
+						}
 					};
 
-					strParam = 'options[] = "[' + data.join(',') + ']"';
+					strParam = '"[' + data.join(',') + ']"';
 					console.log(strParam);
 					return strParam;
 				};
@@ -87,8 +116,9 @@ hotelApp
 					$('.stepService__item').on('click', function(e) {
 						scope.serviceCost = $(this).attr('data-cost');
 						scope.servicePeople = $(this).attr('data-people');
-						console.log(scope.serviceCost, 'people: '+scope.servicePeople);
-						$paramsSetter.setParam('options', scope.getAndSetServicesParams());
+
+						$paramsSetter.setParam('options[]', scope.getAndSetServicesParams());
+						$price.setPrice('services', scope.applyServices);
 					});
 				}, 1500);
 			},
