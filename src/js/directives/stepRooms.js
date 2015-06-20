@@ -58,7 +58,7 @@ hotelApp
 						});
 						clearSelected();
 						scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
-						$stepError.setErrorValue(false);//!!!! поставить на тру
+						$stepError.setErrorValue(true);//!!!! поставить на тру
 					});
 				}, 1500);
 			},
