@@ -24,6 +24,7 @@ hotelApp
 
 					validate();
 					if (scope.validateError > 0) return;
+					updatePlaceholders();
 
 					data.id = scope.addCounter++;
 					scope.people.push(data);
@@ -77,13 +78,26 @@ hotelApp
 					});
 				}
 
+				function updatePlaceholders() {
+					var conf = {
+						family: 'Фамилия',
+						first: 'Имя',
+						second: 'Отчетство',
+						age: 'Возраст'
+					};
+
+					for (var key in conf) {
+						$('input[data-ng-model^="' + key + '"]').attr('placeholder', conf[key]);
+					}
+				}
+
 				function validate() {
 					var conf = [
 						{
 							model: scope.family,
 							name: 'family',
 							applyCls: 'people__area_error',
-							title: 'Введите фамилию',
+							title: 'Пустое значение',
 							checker: function(val) {
 								return !!val;
 							}
@@ -92,7 +106,7 @@ hotelApp
 							model: scope.first,
 							name: 'first',
 							applyCls: 'people__area_error',
-							title: 'Введите имя',
+							title: 'Пустое значение',
 							checker: function(val) {
 								return !!val;
 							}
@@ -101,7 +115,7 @@ hotelApp
 							model: scope.second,
 							name: 'second',
 							applyCls: 'people__area_error',
-							title: 'Введите отчество',
+							title: 'Пустое значение',
 							checker: function(val) {
 								return !!val;
 							}
@@ -110,7 +124,7 @@ hotelApp
 							model: scope.age,
 							name: 'age',
 							applyCls: 'people__area_error',
-							title: 'Введите цифры',
+							title: 'Формат поля (тольцо цифры)',
 							checker: function(val) {
 								return (val/val) ? true : false;
 							}
@@ -124,7 +138,7 @@ hotelApp
 
 						if (!conf.checker(conf.model)) {
 							scope.validateError++;
-							$(query).attr('value', conf.title).addClass(conf.applyCls);
+							$(query).attr('placeholder', conf.title).addClass(conf.applyCls);
 						} else {
 							$(query).removeClass(conf.applyCls);
 						}
