@@ -44,12 +44,34 @@ hotelApp
 						scope.totalSum = $price.getPrice().totalSum;
 				}, true);
 
+				function clearPriceAfterBack(stepId) {
+					var conf = {
+						'1': function() {
+							$price.setPrice('room', {
+								cost: 0,
+								image: ''
+							});
+							$price.setPrice('services', []);
+						},
+						'3': function() {
+							$price.setPrice('people', []);
+							$price.setPrice('peopleCount', 0);
+							$price.setPrice('services', []);
+						},
+						'4': function() {
+							$price.setPrice('services', []);
+						}
+					};
+					conf[stepId]();
+				}
+
 				scope.goPrevFromTabItem = function(id) {
 					if (id == 4 && $paramsSetter.getParams().rooms == 1) {
 						scope.currentPosition = id - 1;
 						return;
 					}
 					scope.currentPosition = id;
+					clearPriceAfterBack(scope.currentPosition);
 				};
 
 				scope.goPrevStep = function() {
@@ -59,6 +81,7 @@ hotelApp
 						scope.currentPosition--;  // если однокомнатный номер, не допускаем отката на шаг услуг
 					}
 
+					clearPriceAfterBack(scope.currentPosition);
 					$stepError.setErrorValue(true);
 				};
 
