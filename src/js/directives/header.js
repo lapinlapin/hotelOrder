@@ -1,3 +1,7 @@
+/*
+ *   @name Директива шапки страницы.
+ *   Разворачивается из объекта.
+ */
 hotelApp
 	.directive('header', ['$timeout', function($timeout) {
 		return {

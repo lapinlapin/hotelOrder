@@ -1,3 +1,7 @@
+/*
+ *   @name Конфигурация приложения.
+ *   Настройка роутинга.
+ */
 'use strict';
 var hotelApp = angular.module('hotel', ['ui.router']);
 

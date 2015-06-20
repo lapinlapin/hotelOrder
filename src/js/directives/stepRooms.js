@@ -1,3 +1,7 @@
+/*
+ *   @name Директива выбора номера.
+ *   Разворачивается из массива.
+ */
 hotelApp
 	.directive('stepRooms', [
 		'$paramsSetter',
