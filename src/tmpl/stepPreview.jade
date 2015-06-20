@@ -1,6 +1,7 @@
 .stepPreview(data-ng-show='currentStep == blockStep')
 	.stepPreview__rooms
-		span.stepPreview__rooms-label Стоимость {{preview.room.cost}} (руб.)
+		span.stepPreview__rooms-label Стоимость {{preview.room.cost}} (руб / cутки)
+		span.stepPreview__dates Период проживания ({{preview.dates.from}} - {{preview.dates.to}}), {{preview.days}} дн.
 		img.stepPreview__rooms-image(data-ng-src='{{preview.room.image}}' width='350' height='280')
 	ul.stepPreview__list
 		span.stepPreview__rooms-label Посетители

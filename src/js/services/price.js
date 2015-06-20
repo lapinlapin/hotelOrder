@@ -1,7 +1,11 @@
 hotelApp
 	.factory('$price', function() {
 		var price = {
-			days: 2,
+			days: 1,
+			dates: {
+				from: '',
+				to: ''
+			},
 			room: {
 				cost: 0,
 				image: ''

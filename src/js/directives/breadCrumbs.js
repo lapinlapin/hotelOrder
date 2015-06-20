@@ -52,11 +52,20 @@ hotelApp
 								image: ''
 							});
 							$price.setPrice('services', []);
+							$rootScope.$emit('cleanedDates', true);
+						},
+						'2': function() {
+							$price.setPrice('days', 1);
+							$rootScope.$emit('cleanedDates', true);
+							$price.setPrice('people', []);
+							$price.setPrice('peopleCount', 0);
+							$price.setPrice('services', []);
 						},
 						'3': function() {
 							$price.setPrice('people', []);
 							$price.setPrice('peopleCount', 0);
 							$price.setPrice('services', []);
+							$stepError.setErrorValue(true);
 						},
 						'4': function() {
 							$price.setPrice('services', []);
@@ -72,6 +81,8 @@ hotelApp
 					}
 					scope.currentPosition = id;
 					clearPriceAfterBack(scope.currentPosition);
+
+					scope.currentPosition == 4 ? $stepError.setErrorValue(false) : $stepError.setErrorValue(true);
 				};
 
 				scope.goPrevStep = function() {
@@ -82,7 +93,8 @@ hotelApp
 					}
 
 					clearPriceAfterBack(scope.currentPosition);
-					$stepError.setErrorValue(true);
+					//$stepError.setErrorValue(true);
+					scope.currentPosition == 4 ? $stepError.setErrorValue(false) : $stepError.setErrorValue(true);
 				};
 
 				scope.goNextPrev = function() {
@@ -91,7 +103,7 @@ hotelApp
 					if (scope.currentPosition == 4) { //если на текущий момент, перед счетчиком мы в услугах, разрешаем не выбирать
 						$stepError.setErrorValue(false);
 					}
-
+					console.log($stepError.getErrorValue());
 					if ($stepError.getErrorValue()) return; // если валидация там где нужно не пройдена, останавливаем
 
 					scope.currentPosition++; // увеличиваем текущий шаг
