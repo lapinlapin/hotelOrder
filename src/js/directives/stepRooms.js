@@ -45,8 +45,6 @@ hotelApp
 						scope.roomCost = $(this).attr('data-cost');
 						scope.image = $(this).find('img').attr('data-ng-src');
 
-						console.log('select: cost ' + scope.roomCost + ', id ' + scope.roomId + 'src '+scope.image);
-
 						clearSelected();
 
 						$(this).addClass('stepRooms__rooms-room_select');
@@ -60,7 +58,7 @@ hotelApp
 						scope.$emit('stepChanged', parseInt(scope.blockStep) + 1);
 						$stepError.setErrorValue(true);
 					});
-				}, 1500);
+				}, 1000);
 			},
 			templateUrl: '../stepRooms.html',
 			replace: true

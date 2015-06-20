@@ -14,6 +14,11 @@ hotelApp
 				currentPosition: '='
 			},
 			link: function(scope, elem, attrs) {
+
+				scope.$watch('message', function(newV) {
+					$paramsSetter.setParam('comment', newV);
+				});
+
 				scope.$watch(
 					function() {
 						return $price.getPrice();
@@ -24,10 +29,19 @@ hotelApp
 					}, true);
 
 				scope.sendClientData = function() {
-					console.log($paramsSetter.getParams());
 					$http.get('../server.json', $paramsSetter.getParams()).success(function(data) {
-						console.log(data);
+						$price.setPrice('room', {
+							cost: 0,
+							image: ''
+						});
+						$price.setPrice('days', 1);
+						$rootScope.$emit('cleanedDates', true);
+						$price.setPrice('people', []);
+						$price.setPrice('peopleCount', 0);
+						$price.setPrice('services', []);
 						scope.currentPosition = 1;
+
+						alert('Server responce: ' + data.success);
 					});
 				}
 

@@ -64,7 +64,7 @@ hotelApp
 					scope.people.forEach(function(people) {
 						dataStr += 'persons[] = "["' + people.fam + '", "' + people.first + '", "' + people.second + '", "' + people.age + '"]" ';
 					});
-					console.log(dataStr);
+
 					return dataStr;
 				};
 

@@ -107,7 +107,6 @@ hotelApp
 					};
 
 					strParam = '"[' + data.join(',') + ']"';
-					console.log(strParam);
 					return strParam;
 				};
 

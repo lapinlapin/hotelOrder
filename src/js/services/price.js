@@ -28,12 +28,11 @@ hotelApp
 							sum += (parseInt(price.days) * parseInt(service.cost));
 						}
 					});
-					console.log('services sum = '+sum);
+
 				}
 
 				function getRoomSum() {
 					sum += (parseInt(price.room.cost) * parseInt(price.days));
-					console.log('room sum = '+sum);
 				}
 
 				function setSummaryToPrice() {
