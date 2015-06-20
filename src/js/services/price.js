@@ -14,12 +14,14 @@ hotelApp
 
 		return {
 			calculate: function() {
+				sum = 0;
+
 				function getServicesSum() {
 					price.services.forEach(function(service) {
 						if (service.people) {
-							sum += (parseInt(days) * parseInt(peopleCount) * parseInt(service.cost));
+							sum += (parseInt(price.days) * parseInt(price.peopleCount) * parseInt(service.cost));
 						} else {
-							sum += (parseInt(days) * parseInt(service.cost));
+							sum += (parseInt(price.days) * parseInt(service.cost));
 						}
 					});
 					console.log('services sum = '+sum);
@@ -37,6 +39,8 @@ hotelApp
 				getServicesSum();
 				getRoomSum();
 				setSummaryToPrice();
+
+				return price.totalSum;
 			},
 			setPrice: function(key, data) {
 				price[key] = data;

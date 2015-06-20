@@ -1,5 +1,11 @@
 hotelApp
-	.directive('breadCrumbs', ['$stepError', '$rootScope', '$paramsSetter', function($stepError, $rootScope, $paramsSetter) {
+	.directive('breadCrumbs', [
+		'$stepError',
+		'$rootScope',
+		'$paramsSetter',
+		'$price',
+		'$timeout',
+		function($stepError, $rootScope, $paramsSetter, $price, $timeout) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -28,6 +34,15 @@ hotelApp
 						id: 5
 					}
 				];
+
+				scope.$watch(
+					function() {
+						return $price.getPrice();
+				},
+					function(newV) {
+						$price.calculate();
+						scope.totalSum = $price.getPrice().totalSum;
+				}, true);
 
 				scope.goPrevFromTabItem = function(id) {
 					if (id == 4 && $paramsSetter.getParams().rooms == 1) {
@@ -64,8 +79,9 @@ hotelApp
 
 					$stepError.setErrorValue(true);
 
-					$rootScope.$emit('cleanedPeople', true);
-					$rootScope.$emit('cleanedServices', true);
+					// Если нужно почистить окна, при возврате
+					//$rootScope.$emit('cleanedPeople', true);
+					//$rootScope.$emit('cleanedServices', true);
 				};
 			},
 			templateUrl: '../breadCrumbs.html',

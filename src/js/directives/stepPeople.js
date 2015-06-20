@@ -50,6 +50,10 @@ hotelApp
 					});
 
 					scope.people = people;
+
+					$price.setPrice('people', scope.people);
+					$price.setPrice('peopleCount', scope.people.length);
+
 					return scope.people;
 				};
 

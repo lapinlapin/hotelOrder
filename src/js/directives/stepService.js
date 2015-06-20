@@ -101,7 +101,6 @@ hotelApp
 									scope.applyServices.push(serv);
 								}
 							});
-
 						} else {
 							data.push('0');
 						}
@@ -116,9 +115,11 @@ hotelApp
 					$('.stepService__item').on('click', function(e) {
 						scope.serviceCost = $(this).attr('data-cost');
 						scope.servicePeople = $(this).attr('data-people');
-
 						$paramsSetter.setParam('options[]', scope.getAndSetServicesParams());
+
 						$price.setPrice('services', scope.applyServices);
+						$price.calculate();
+						$rootScope.$apply();
 					});
 				}, 1500);
 			},
