@@ -35,6 +35,7 @@ hotelApp
 
 				scope.sendClientData = function() {
 					$http.get('../server.json', $paramsSetter.getParams()).success(function(data) {
+						console.log($paramsSetter.getParams());
 						$price.setPrice('room', {
 							cost: 0,
 							image: ''
