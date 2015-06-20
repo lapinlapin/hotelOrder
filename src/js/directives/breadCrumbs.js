@@ -79,9 +79,8 @@ hotelApp
 
 					$stepError.setErrorValue(true);
 
-					// Если нужно почистить окна, при возврате
-					//$rootScope.$emit('cleanedPeople', true);
-					//$rootScope.$emit('cleanedServices', true);
+					$rootScope.$emit('cleanedPeople', true);
+					$rootScope.$emit('cleanedServices', true);
 				};
 			},
 			templateUrl: '../breadCrumbs.html',

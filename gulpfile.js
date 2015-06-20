@@ -13,6 +13,13 @@ var tinyLr = require('tiny-lr'),
 	nib = require('nib');
 	server = tinyLr();
 
+gulp.task('json', function() {
+	gulp.src('./src/json/**/*.json')
+		.on('error', console.log)
+		.pipe(gulp.dest('./public/'))
+		.pipe(livereload(server));
+});
+
 gulp.task('jade', function() {
 	gulp.src('./src/tmpl/**/*.jade')
 		.pipe(jade({pretty: true}))
@@ -53,6 +60,7 @@ gulp.task('http-server', function() {
 });
 
 gulp.task('watch', function() {
+	gulp.run('json');
 	gulp.run('stylus');
 	gulp.run('jade');
 	gulp.run('images');
@@ -63,6 +71,9 @@ gulp.task('watch', function() {
 
 		gulp.watch('src/stylus/**/*.styl', function() {
 			gulp.run('stylus');
+		});
+		gulp.watch('src/json/**/*.json', function() {
+			gulp.run('json');
 		});
 		gulp.watch('src/tmpl/**/*.jade', function() {
 			gulp.run('jade');
@@ -78,4 +89,4 @@ gulp.task('watch', function() {
 	gulp.start('http-server');
 });
 
-gulp.task('default',['watch','stylus','jade','js','images','http-server']);
+gulp.task('default',['watch','stylus','jade','js','images','http-server', 'json']);

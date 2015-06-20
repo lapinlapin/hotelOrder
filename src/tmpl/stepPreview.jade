@@ -10,3 +10,5 @@
 		span.stepPreview__rooms-label Заказанные услуги к номеру
 		li.stepPreview__item(data-ng-repeat='service in preview.services') {{$index + 1}}) {{service.title}}, {{service.cost}} (руб.)
 			span.stepPreview__quote(data-ng-show='service.people') &nbsp с человека в сутки
+
+	a.breadCrumbs__button.breadCrumbs__button_big(data-ng-click='sendClientData()') Оформить номер
